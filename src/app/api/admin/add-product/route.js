@@ -14,6 +14,11 @@ const AddNewProductSchema = Joi.object({
   onSale: Joi.string().required(),
   priceDrop: Joi.number().required(),
   imageUrl: Joi.string().required(),
+  host1: Joi.string().required(),
+  host2: Joi.string().required(),
+  phone: Joi.number().required(),
+
+  days:Joi.string().required(),
 });
 
 export const dynamic = "force-dynamic";
@@ -39,6 +44,10 @@ export async function POST(req) {
         venuInfo,
         onSale,
         priceDrop,
+        phone,
+        host1,
+        host2,
+        days
       } = extractData;
 
       const { error } = AddNewProductSchema.validate({
@@ -51,6 +60,10 @@ export async function POST(req) {
         venuInfo,
         onSale,
         priceDrop,
+        phone,
+        host1,
+        host2,
+        days
       });
 
       if (error) {

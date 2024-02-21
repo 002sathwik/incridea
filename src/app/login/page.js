@@ -6,11 +6,11 @@ import Notification from "@/components/Notification";
 import { GlobalContext } from "@/context";
 import { login } from "@/services/login";
 import { loginFormControls } from "@/utils";
+import { CircularProgress } from "@material-ui/core";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import ComponentLevelLoader from "@/components/Loader/componentlevel";
 
 const initialFormdata = {
   email: "",
@@ -19,14 +19,9 @@ const initialFormdata = {
 
 export default function Login() {
   const [formData, setFormData] = useState(initialFormdata);
-  const {
-    isAuthUser,
-    setIsAuthUser,
-    user,
-    setUser,
-    pageLevelLoader,
-    setPageLevelLoader,
-  } = useContext(GlobalContext);
+  const [load, setLoad] = useState(false);
+  const { isAuthUser, setIsAuthUser, user, setUser } =
+    useContext(GlobalContext);
 
   const router = useRouter();
 
@@ -44,7 +39,7 @@ export default function Login() {
 
   async function handleLogin() {
     try {
-      setPageLevelLoader(true);
+      setLoad(true);
       const res = await login(formData);
 
       console.log(res);
@@ -70,7 +65,7 @@ export default function Login() {
         position: toast.POSITION.TOP_RIGHT,
       });
     } finally {
-      setPageLevelLoader(false);
+      setLoad(false);
     }
   }
 
@@ -81,68 +76,61 @@ export default function Login() {
   }, [isAuthUser, router]);
 
   return (
-    <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-lg">
-        <h1 className=" font-Salsa text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
-          Get Started
-        </h1>
+    <div className="wave-register">
+      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-lg">
+          <h1 className=" md:ml-1 font-Salsa text-center text-3xl font-bold text-white sm:text-5xl">
+            Incridea!🌟
+          </h1>
 
-        <p className=" font-Salsa  mx-auto mt-4 max-w-md text-center text-gray-500">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati
-          sunt dolores deleniti inventore quaerat mollitia?
-        </p>
-        <div className=" mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
-          <div className="w-full mt-6 mr-0 mb-0 ml-0 relative space-y-8">
-            {loginFormControls.map((controlItem) =>
-              controlItem.componentType === "input" ? (
-                <InputComponent
-                  key={controlItem.id}
-                  type={controlItem.type}
-                  placeholder={controlItem.placeholder}
-                  label={controlItem.label}
-                  value={formData[controlItem.id]}
-                  onChange={(event) => {
-                    setFormData({
-                      ...formData,
-                      [controlItem.id]: event.target.value,
-                    });
-                  }}
-                />
-              ) : null
-            )}
-
-            <button
-              className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg 
-                     text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide
-                     "
-              disabled={!isValidForm()}
-              onClick={handleLogin}
-            >
-              {pageLevelLoader ? (
-                <ComponentLevelLoader
-                  text={"Logging In"}
-                  color={"#ffffff"}
-                  loading={pageLevelLoader}
-                />
-              ) : (
-                "Login"
+          <p className=" font-Salsa  mx-auto mt-4 max-w-md text-center text-gray-500">
+          Gain swift access to your account by signing in. Seamlessly manage your profile and explore exclusive features
+          </p>
+          <div className=" bg-white border border-black mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
+            <div className="w-full mt-6 mr-0 mb-0 ml-0 relative space-y-8">
+              {loginFormControls.map((controlItem) =>
+                controlItem.componentType === "input" ? (
+                  <InputComponent
+                    key={controlItem.id}
+                    type={controlItem.type}
+                    placeholder={controlItem.placeholder}
+                    label={controlItem.label}
+                    value={formData[controlItem.id]}
+                    onChange={(event) => {
+                      setFormData({
+                        ...formData,
+                        [controlItem.id]: event.target.value,
+                      });
+                    }}
+                  />
+                ) : null
               )}
-            </button>
-            <div className="flex flex-col gap-2">
-              <p>New to website ?</p>
+
               <button
-                className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg 
+                className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg 
                      text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide
                      "
-                onClick={() => router.push("/register")}
+                disabled={!isValidForm()}
+                onClick={handleLogin}
               >
-                Register
+                {load ? <CircularProgress color="inherit" /> : "Login"}
               </button>
+              <div className="flex flex-col gap-2">
+                <p>New to website ?</p>
+                <button
+                  className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg 
+                     text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide
+                     "
+                  onClick={() => router.push("/register")}
+                >
+                  Register
+                </button>
+              </div>
             </div>
           </div>
         </div>
+        <Notification />
       </div>
-      <Notification />
     </div>
   );
 }

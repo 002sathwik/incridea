@@ -24,6 +24,10 @@ export async function PUT(req) {
         venuInfo,
         onSale,
         priceDrop,
+        phone,
+        host1,
+        host2,
+        days
       } = extractData;
 
       const updatedProduct = await Product.findOneAndUpdate(
@@ -40,6 +44,10 @@ export async function PUT(req) {
           venuInfo,
           onSale,
           priceDrop,
+          phone,
+          host1,
+          host2,
+          days
         },
         { new: true }
       );

@@ -12,7 +12,7 @@ export default function SelectComponent({
       <select
         value={value}
         onChange={onChange}
-        className="border font-Lemon placeholder-gray-200 focus:outline-none focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mr-0 mt-0 ml-0 text-base block bg-white border-gray-300 rounded-md"
+        className="border border-gray-400 font-Lemon placeholder-gray-200 focus:outline-none focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mr-0 mt-0 ml-0 text-base block bg-white  rounded-md"
       >
         {options && options.length ? (
           options.map((optionItem) => (

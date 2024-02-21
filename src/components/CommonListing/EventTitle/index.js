@@ -6,20 +6,52 @@ export default function ProductTile({ item }) {
   const router = useRouter();
 
   return (
-    <div
-      className="border border-black border-b-none"
-      onClick={() => router.push(`/product/${item._id}`)}
-    >
+    <div className=" " onClick={() => router.push(`/product/${item._id}`)}>
       <div className="group overflow-hidden aspect-w-1 aspect-h-1 h-52">
         <img
           src={item.imageUrl}
           alt="Product image"
-          className="h-full w-full object-cover transition duration-800 group-hover:scale-105"
+          className=" rounded-t-lg  h-full w-full object-cover transition duration-800 group-hover:scale-105"
         />
       </div>
+      {item.category === "art" ? (
+        <div
+          className="absolute top-0 w-40 h-8 rounded-r-lg p-1 "
+          style={{
+            backgroundImage:
+              "linear-gradient(to right top, #df6faf, #c45ea6, #a84e9c, #8c4092, #6e3388, #593587, #423785, #273781, #084182, #004980, #00507c, #0d5676)",
+          }}
+        >
+          <p className="p-1 text-[12px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
+            Art
+          </p>
+        </div>
+      ) : item.category === "tech" ? (
+        <div
+          className="absolute top-0 w-40 h-8 rounded-r-lg p-1 "
+          style={{
+            backgroundImage:
+              "linear-gradient(to right top, #df6faf, #c45ea6, #a84e9c, #8c4092, #6e3388, #593587, #423785, #273781, #084182, #004980, #00507c, #0d5676)",
+          }}
+        >          <p className="p-1 text-[12px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
+            Tech
+          </p>
+        </div>
+      ) : item.category === "cultural" ? (
+        <div
+          className="absolute top-0 w-40 h-8 rounded-r-lg p-1"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right top, #df6faf, #c45ea6, #a84e9c, #8c4092, #6e3388, #593587, #423785, #273781, #084182, #004980, #00507c, #0d5676)",
+          }}
+        >          <p className="p-1 text-[12px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
+            Cultural
+          </p>
+        </div>
+      ) : null}
 
       {item.onSale === "yes" ? (
-        <div className="absolute top-0 m-2 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500">
+        <div className="absolute right-0 top-0 m-2 rounded-full bg-yellow-500">
           <p className="  p-1 text-[12px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
             Sale
           </p>
@@ -30,8 +62,8 @@ export default function ProductTile({ item }) {
           {item.name}
         </h3>
       </div>
-      <div className="my-4 mx-auto flex w-10/12 flex-col items-start justify-between">
-        <div className="mb-2 flex">
+      <div className="rounded-full  font-Salsa  font-bold mt-1.5 text-center   bg-white px-5 py-3 text-xs  uppercase tracking-wide text-black  mx-auto flex-col items-start ">
+        <div className="mb-2 flex ">
           <p
             className={`mr-3 text-sm font-semibold ${
               item.onSale === "yes" ? "line-through" : ""

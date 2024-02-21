@@ -16,8 +16,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <GlobalState>
-          <Navbar />
-          <main className='flex  flex-col mt-[100px] '>{children}</main>
+         
+          <main className='flex  flex-col ' >{children}</main>
           <ToastContainer />
         </GlobalState>
       </body>

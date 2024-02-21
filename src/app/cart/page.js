@@ -1,6 +1,7 @@
 "use client";
 
 import CommonCart from "@/components/CommonCart";
+import Navbar from "@/components/Navbar";
 import { GlobalContext } from "@/context";
 import { deleteFromCart, getAllCartItems } from "@/services/cart";
 import { useContext, useEffect } from "react";
@@ -21,7 +22,7 @@ export default function Cart() {
   async function extractAllCartItems() {
     setPageLevelLoader(true);
     const res = await getAllCartItems(user?._id);
-
+    console.log(res);
     if (res.success) {
       const updatedData =
         res.data && res.data.length
@@ -34,7 +35,8 @@ export default function Cart() {
                     ? parseInt(
                         (
                           item.productID.price -
-                          item.productID.price * (item.productID.priceDrop / 100)
+                          item.productID.price *
+                            (item.productID.priceDrop / 100)
                         ).toFixed(2)
                       )
                     : item.productID.price,
@@ -86,10 +88,13 @@ export default function Cart() {
   }
 
   return (
-    <CommonCart
-      componentLevelLoader={componentLevelLoader}
-      handleDeleteCartItem={handleDeleteCartItem}
-      cartItems={cartItems}
-    />
+    <>
+      <Navbar />
+      <CommonCart
+        componentLevelLoader={componentLevelLoader}
+        handleDeleteCartItem={handleDeleteCartItem}
+        cartItems={cartItems}
+      />
+    </>
   );
 }

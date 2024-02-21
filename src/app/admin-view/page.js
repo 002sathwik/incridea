@@ -9,6 +9,7 @@ import { useContext, useEffect } from "react";
 
 import { PulseLoader } from "react-spinners";
 import AdminLayout from "@/components/AdminLayout.js/page";
+import Spinner from "@/components/Spinner/page";
 
 export default function AdminView() {
   const {
@@ -57,18 +58,14 @@ export default function AdminView() {
   if (pageLevelLoader) {
     return (
       <div className="w-full min-h-screen flex justify-center items-center">
-        <PulseLoader
-          color={"#000000"}
-          loading={pageLevelLoader}
-          size={30}
-          data-testid="loader"
-        />
+      <Spinner/>
       </div>
     );
   }
 
   return (
-    <AdminLayout isSidebarFixed={false} fl={true}>
+    <AdminLayout >
+   <svg  className="wave-bokkings top-0 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#31485A" fill-opacity="1" d="M0,320L80,298.7C160,277,320,235,480,234.7C640,235,800,277,960,272C1120,267,1280,213,1360,186.7L1440,160L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
       <div class="grid grid-rows-3 grid-flow-col gap-2 h-screen mx-auto">
         <div class="row-span-2 col-span-2 ...">
           <div className=" ">
@@ -77,7 +74,7 @@ export default function AdminView() {
                 allOrdersForAllUsers.map((item, index) => (
                   <div
                     key={index}
-                    className="bg-gray-200 shadow p-5 flex flex-col space-y-3 py-6 text-left"
+                    className="bg-gray-100 shadow p-5 flex flex-col space-y-3 py-6 text-left"
                   >
                     <div className="flex items-center justify-center">
                       <h1 className="font-bold text-lg mb-3">

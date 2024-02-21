@@ -9,6 +9,7 @@ import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
 import AdminLayout from "@/components/AdminLayout.js/page";
 import { getAllAdminProducts } from "@/services/product";
 import { useEffect, useState } from "react";
+import { CircularProgress } from "@material-ui/core";
 
 export default function ProductChart() {
   const [productData, setProductData] = useState([]);
@@ -35,7 +36,13 @@ export default function ProductChart() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
+      <div className="text-white">
+        <CircularProgress color="inherit" />
+      </div>
+    </div>
+    );
   }
 
   // Calculate the total number of products
@@ -106,7 +113,7 @@ export default function ProductChart() {
         data: Object.values(categoryCounts),
         backgroundColor: [
           "#D1F755", // Red
-          "#F75798", // Yellow
+          "#16717B", // Yellow
           "#beee62", // Blue
         ],
       },
@@ -171,45 +178,45 @@ export default function ProductChart() {
     maintainAspectRatio: true,
   };
   return (
-    <AdminLayout isSidebarFixed={false} fl={false} className="fixed">
-    <div class="grid grid-cols-3 gap-4 mx-auto mt-20">
-      <div class=" box a col-span-2 row-span-1 bg-gray-800  font-Salsa rounded p-6 text-2xl">
-        <div className="flex flex-row gap-2">
-          <div className="border bg-white text-black p-3 rounded-lg ">
-            <h1>
-              Total Events: <CountUp end={totalProducts} duration={2} />
-            </h1>
+    <AdminLayout>
+      <div class="grid grid-cols-3 gap-4 mx-auto mt-20">
+        <div class=" box a col-span-2 row-span-1 bg-gray-800  font-Salsa rounded p-6 text-2xl">
+          <div className="flex flex-row gap-2">
+            <div className="border bg-white text-black p-3 rounded-lg ">
+              <h1>
+                Total Events: <CountUp end={totalProducts} duration={2} />
+              </h1>
+            </div>
+            <div className="border bg-white text-black p-3 rounded-lg ">
+              <h1>
+                Total Events Onsale:{" "}
+                <CountUp end={onSaleProducts.length} duration={2} />
+              </h1>
+            </div>
           </div>
-          <div className="border bg-white text-black p-3 rounded-lg ">
-            <h1>
-              Total Events Onsale:  <CountUp end={onSaleProducts.length} duration={2} />
-
-            </h1>
+        </div>
+        <div class="box bg-white  col-span-1 row-span-2  border border-black text-black font-Salsa rounded p-6 text-2xl flex flex-col">
+          <div>
+            <h2 className=" text-center font-Salsa">Event Types Distribution</h2>
           </div>
-        
+          <div>
+            <Pie data={pieChartData} options={chartOptions} />
+          </div>
+        </div>
+        <div class=" bg-white box c col-span-1 row-span-1  border border-black text-black font-Salsa rounded p-6 text-2xl">
+          <h2 className="text-center">Prize per Event</h2>
+          <div>
+            <Bar data={prizeChartData} />
+          </div>
+        </div>
+        <div class=" bg-white box d col-span-1 row-span-1  border border-black text-black font-Salsa rounded p-6 text-2xl">
+          <h2 className="text-center"> Events on Sale - Price Drop </h2>
+          <div>
+            <Line data={lineChartData} />
+          </div>
         </div>
       </div>
-      <div class="box b col-span-1 row-span-2  border border-black text-black font-Salsa rounded p-6 text-2xl flex flex-col">
-        <div>
-          <h2 className="text-center font-Salsa">Event Types Distribution</h2>
-        </div>
-        <div>
-          <Pie data={pieChartData} options={chartOptions} />
-        </div>
-      </div>
-      <div class="box c col-span-1 row-span-1  border border-black text-black font-Salsa rounded p-6 text-2xl">
-        <h2 className="text-center">Prize per Event</h2>
-        <div>
-        <Bar data={prizeChartData} />
-        </div>
-      </div>
-      <div class="box d col-span-1 row-span-1  border border-black text-black font-Salsa rounded p-6 text-2xl">
-        <h2 className="text-center"> Events on Sale - Price Drop </h2>
-        <div>
-          <Line data={lineChartData} />
-        </div>
-      </div>
-    </div>
-  </AdminLayout>
+      <svg  className="wave-bokkings " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#16717B" fill-opacity="1" d="M0,160L34.3,138.7C68.6,117,137,75,206,69.3C274.3,64,343,96,411,106.7C480,117,549,107,617,96C685.7,85,754,75,823,74.7C891.4,75,960,85,1029,90.7C1097.1,96,1166,96,1234,96C1302.9,96,1371,96,1406,96L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
+    </AdminLayout>
   );
 }

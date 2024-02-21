@@ -8,9 +8,11 @@ import "chart.js/helpers";
 import CountUp from "react-countup";
 import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
 import AdminLayout from "@/components/AdminLayout.js/page";
+import Spinner from "@/components/Spinner/page";
 import { getAllUsers } from "@/services/users";
 import { useEffect, useState } from "react";
 import moment from "moment"; // Import moment library
+import { CircularProgress } from "@material-ui/core";
 
 export default function UserChart() {
   const [users, setUsers] = useState([]);
@@ -37,7 +39,9 @@ export default function UserChart() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return<div className="flex items-center justify-center h-screen">
+       <Spinner/>
+  </div>;
   }
 
   const totalUsers = users.length;
@@ -108,7 +112,7 @@ export default function UserChart() {
     datasets: [
       {
         data: [customerCount, adminCount],
-        backgroundColor: ["rgba(255,99,132,0.7)", "rgba(54,162,235,0.7)"],
+        backgroundColor: ["#FF2323", "rgba(54,162,235,0.7)"],
       },
     ],
   };
@@ -127,7 +131,7 @@ export default function UserChart() {
   };
 
   return (
-    <AdminLayout isSidebarFixed={false} fl={false} className="fixed">
+    <AdminLayout >
       <div class="grid grid-cols-3 gap-4 mx-auto mt-20">
         <div class=" box a col-span-2 row-span-1 bg-gray-800  font-Salsa rounded p-6 text-2xl">
           <div className="flex flex-row gap-2">
@@ -148,7 +152,7 @@ export default function UserChart() {
             </div>
           </div>
         </div>
-        <div class="box b col-span-1 row-span-2  border border-black text-black font-Salsa rounded p-6 text-2xl flex flex-col">
+        <div class="box bg-white col-span-1 row-span-2  border border-black text-black font-Salsa rounded p-6 text-2xl flex flex-col">
           <div>
             <h2 className="text-center">User Distribution</h2>
           </div>
@@ -156,19 +160,21 @@ export default function UserChart() {
             <Pie data={pieChartData} />
           </div>
         </div>
-        <div class="box c col-span-1 row-span-1  border border-black text-black font-Salsa rounded p-6 text-2xl">
+        <div class="box bg-white col-span-1 row-span-1  border border-black text-black font-Salsa rounded p-6 text-2xl">
           <h2 className="text-center">Total Users Bar Chart</h2>
           <div>
             <Bar data={chartData} />
           </div>
         </div>
-        <div class="box d col-span-1 row-span-1  border border-black text-black font-Salsa rounded p-6 text-2xl">
+        <div class="box bg-white col-span-1 row-span-1  border border-black text-black font-Salsa rounded p-6 text-2xl">
           <h2 className="text-center">Customer vs Admin </h2>
           <div>
             <Line data={lineData} />
           </div>
         </div>
       </div>
+      <svg className="wave-bokkings" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FF2323" fill-opacity="1" d="M0,64L60,58.7C120,53,240,43,360,58.7C480,75,600,117,720,133.3C840,149,960,139,1080,160C1200,181,1320,235,1380,261.3L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+     
     </AdminLayout>
   );
 }

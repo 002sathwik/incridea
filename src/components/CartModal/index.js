@@ -8,8 +8,6 @@ import { toast } from "react-toastify";
 import ComponentLevelLoader from "../Loader/componentlevel";
 import { useRouter } from "next/navigation";
 
-
-
 export default function CartModal() {
   const {
     showCartModal,
@@ -26,6 +24,7 @@ export default function CartModal() {
   async function extractAllCartItems() {
     const res = await getAllCartItems(user?._id);
 
+    console.log(res);
     if (res.success) {
       const updatedData =
         res.data && res.data.length
@@ -34,7 +33,7 @@ export default function CartModal() {
               productID: {
                 ...item.productID,
                 price:
-                  item.productID.onSale === "yes"
+                  item.productID._id.onSale === "yes"
                     ? parseInt(
                         (
                           item.productID.price -
@@ -82,7 +81,10 @@ export default function CartModal() {
       setShow={setShowCartModal}
       mainContent={
         cartItems && cartItems.length ? (
-          <ul role="list" className=" mt-[250px] md:mt-8 -my-6 divide-y divide-gray-300">
+          <ul
+            role="list"
+            className=" mt-[250px] md:mt-8 -my-6 divide-y divide-gray-300"
+          >
             {cartItems.map((cartItem) => (
               <li key={cartItem.id} className="flex py-6">
                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -108,7 +110,7 @@ export default function CartModal() {
                       </h3>
                     </div>
                     <p className="mt-1 text-sm text-gray-600">
-                    ₹
+                      ₹
                       {cartItem &&
                         cartItem.productID &&
                         cartItem.productID.price}
@@ -165,7 +167,11 @@ export default function CartModal() {
             Checkout
           </button>
           <div className="mt-6 flex justify-center text-center text-sm text-gray-600">
-            <button    onClick={() => setShowCartModal(false)} type="button" className="font-medium text-grey">
+            <button
+              onClick={() => setShowCartModal(false)}
+              type="button"
+              className="font-medium text-grey"
+            >
               Continue Shopping
               <span aria-hidden="true"> &rarr;</span>
             </button>

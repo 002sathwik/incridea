@@ -6,13 +6,18 @@ const ProductSchema = new mongoose.Schema(
     description: String,
     price: Number,
     date: Date,
-    category:String, // Change the field name and data type to Date
+    category: String, // Change the field name and data type to Date
     venuInfo: String,
-    prize:"Number",
-    types:[],
+    prize: "Number",
+    types: [],
     onSale: String,
     priceDrop: Number,
     imageUrl: String,
+    host1: String,
+    host2: String,
+    phone: Number,
+
+    days: String,
   },
   { timestamps: true }
 );

@@ -120,6 +120,27 @@ export const loginFormControls = [
 
 export const adminAddProductformControls = [
   {
+    id: "days",
+    type: "",
+    placeholder: "",
+    label: "Day",
+    componentType: "select",
+    options: [
+      {
+        id: "day1",
+        label: "Day1",
+      },
+      {
+        id: "day2",
+        label: "Day2",
+      },
+      {
+        id: "day2",
+        label: "Day3",
+      },
+    ],
+  },
+  {
     id: "name",
     type: "text",
     placeholder: "Enter Name",
@@ -201,22 +222,32 @@ export const adminAddProductformControls = [
     label: "Price Drop",
     componentType: "input",
   },
+  {
+    id: "host1",
+    type: "text",
+    placeholder: " Enter host",
+    label: "Main Host",
+    componentType: "input",
+  },
+ 
+  {
+    id: "host2",
+    type: "text",
+    placeholder: " Enter host",
+    label: " Patner Host",
+    componentType: "input",
+  },
+  {
+    id: " phone",
+    type: "number",
+    placeholder: "Enter Number ",
+    label: "Main Host Number",
+    componentType: "input",
+  },
+
 ];
 
-export const AvailableSizes = [
-  {
-    id: "1",
-    label: "Day1",
-  },
-  {
-    id: "2",
-    label: "Day2",
-  },
-  {
-    id: "3",
-    label: "Day3 ",
-  },
-];
+
 export const firebaseConfig = {
   apiKey: "AIzaSyDX2sbx6CNnpc2yt-Z143mIlqbsuoZcbig",
   authDomain: "incridea-c4031.firebaseapp.com",

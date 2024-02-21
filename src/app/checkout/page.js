@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "@/components/Navbar";
 import Notification from "@/components/Notification";
 import { GlobalContext } from "@/context";
 import { fetchAllAddresses } from "@/services/address";
@@ -163,9 +164,9 @@ export default function Checkout() {
         
         }
       } catch (error) {
-        // Handle any errors if necessary
+    
         console.error("Error redirecting to orders:", error);
-        // You can add additional error handling here
+       
       }
     };
 
@@ -174,7 +175,8 @@ export default function Checkout() {
 
   if (orderSuccess) {
     return (
-      <section className="h-screen bg-gray-200">
+      <><Navbar/>
+             <section className="h-screen bg-gray-200">
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto mt-8 max-w-screen-xl px-4 sm:px-6 lg:px-8 ">
             <div className="bg-white shadow">
@@ -188,6 +190,8 @@ export default function Checkout() {
           </div>
         </div>
       </section>
+      </>
+ 
     );
   }
 
@@ -205,6 +209,8 @@ export default function Checkout() {
   }
 
   return (
+    <>
+    <Navbar/>
     <div>
       <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
         <div className="px-4 pt-8">
@@ -319,5 +325,6 @@ export default function Checkout() {
       </div>
       <Notification />
     </div>
+    </>
   );
 }
