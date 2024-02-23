@@ -102,12 +102,11 @@ export default function Home() {
           >
             <div className="absolute w-[50%] inset-0 gradient-01 sm:flex sm:flex-col" />
             <div className="2xl:max-w-[1280px] w-full x-auto flex  justify-between gap-8">
-              <div>
-                {" "}
-                <h2 className="  font-Rubik font-extrabold text-[39px] leading-[30.24px] text-white">
-                  INCRIDEA
-                </h2>
-              </div>
+            <div class="loaderNav">
+                  <div data-glitch="INCRIDEA" class="glitchNav  font-Rubik font-extrabold text-[39px] leading-[30.24px] text-white">
+                    INCRIDEA
+                  </div>
+                </div>
 
               <div className="mt-2 flex flex-col gap-4 sm:mt-0 sm:flex-col sm:items-center">
                 {/* Buttons Div */}
@@ -119,9 +118,9 @@ export default function Home() {
                           className={
                             "mt-1.5 font-Lemon inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
                           }
-                          onClick={() => router.push("/account")}
+                          onClick={() => router.push("/product/listing/all-products")}
                         >
-                          Account
+                          Explore
                         </button>
                       </div>
                     </Fragment>

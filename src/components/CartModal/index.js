@@ -33,7 +33,7 @@ export default function CartModal() {
               productID: {
                 ...item.productID,
                 price:
-                  item.productID._id.onSale === "yes"
+                  item.productID.onSale === "yes"
                     ? parseInt(
                         (
                           item.productID.price -

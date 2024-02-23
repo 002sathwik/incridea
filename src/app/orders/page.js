@@ -8,8 +8,9 @@ import { useContext, useEffect } from "react";
 import { PulseLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import Navbar from "@/components/Navbar";
-import Profile from '@/components/Accounts/profilecard/page';
-import Box from '@mui/material/Box';
+import Profile from "@/components/Accounts/profilecard/page";
+import Box from "@mui/material/Box";
+import Spinner from "@/components/Spinner/page";
 
 export default function Orders() {
   const {
@@ -49,13 +50,8 @@ export default function Orders() {
 
   if (pageLevelLoader) {
     return (
-      <div className="w-full min-h-screen flex justify-center items-center">
-        <PulseLoader
-          color={"#000000"}
-          loading={pageLevelLoader}
-          size={30}
-          data-testid="loader"
-        />
+      <div className="flex items-center justify-center h-screen">
+        <Spinner/>
       </div>
     );
   }
@@ -78,7 +74,7 @@ export default function Orders() {
         <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
           <Box gridColumn="span 4 ">
             <div className=" fixed">
-              <Profile   button={false}/>
+              <Profile button={false} />
             </div>
           </Box>
           <Box gridColumn="span 7 ">

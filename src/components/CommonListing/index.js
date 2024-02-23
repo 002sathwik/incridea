@@ -24,11 +24,11 @@ export default function CommonListing({ data, st, ad }) {
           {data && data.length
             ? data.map((item) => (
                 <article
-                  className="relative flex flex-col overflow-hidden border cursor-pointer"
+                  className="relative flex flex-col overflow-hidden   hover:border hover:rounded cursor-pointer"
                   key={item._id}
                 >
                
-                    <div class="card">
+                    <div class="card" >
                       <EventTitle item={item} />
                        <ProductButton item={item}/>
                     </div>

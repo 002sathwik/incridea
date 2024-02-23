@@ -1,5 +1,5 @@
 "use client";
-
+import "./EventTitle.css"
 import { useRouter } from "next/navigation";
 
 export default function ProductTile({ item }) {
@@ -16,15 +16,17 @@ export default function ProductTile({ item }) {
       </div>
       {item.category === "art" ? (
         <div
-          className="absolute top-0 w-40 h-8 rounded-r-lg p-1 "
+          className="absolute top-0 w-40 h-9 rounded-r-lg p-1 "
           style={{
             backgroundImage:
               "linear-gradient(to right top, #df6faf, #c45ea6, #a84e9c, #8c4092, #6e3388, #593587, #423785, #273781, #084182, #004980, #00507c, #0d5676)",
           }}
         >
-          <p className="p-1 text-[12px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
-            Art
-          </p>
+          <div class="div ">
+            <p id="h2">
+              Art<span id="lol"></span>
+            </p>
+          </div>
         </div>
       ) : item.category === "tech" ? (
         <div
@@ -33,9 +35,13 @@ export default function ProductTile({ item }) {
             backgroundImage:
               "linear-gradient(to right top, #df6faf, #c45ea6, #a84e9c, #8c4092, #6e3388, #593587, #423785, #273781, #084182, #004980, #00507c, #0d5676)",
           }}
-        >          <p className="p-1 text-[12px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
-            Tech
-          </p>
+        >
+          {" "}
+          <div class="div">
+            <p id="h2">
+              Tech<span id="lol"></span>
+            </p>
+          </div>
         </div>
       ) : item.category === "cultural" ? (
         <div
@@ -44,15 +50,19 @@ export default function ProductTile({ item }) {
             backgroundImage:
               "linear-gradient(to right top, #df6faf, #c45ea6, #a84e9c, #8c4092, #6e3388, #593587, #423785, #273781, #084182, #004980, #00507c, #0d5676)",
           }}
-        >          <p className="p-1 text-[12px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
-            Cultural
-          </p>
+        >
+          {" "}
+          <div class="div">
+            <p id="h2">
+              Cultural<span id="lol"></span>
+            </p>
+          </div>
         </div>
       ) : null}
 
       {item.onSale === "yes" ? (
-        <div className="absolute right-0 top-0 m-2 rounded-full bg-yellow-500">
-          <p className="  p-1 text-[12px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
+        <div className=" absolute right-0 top-0 m-2 rounded-full bg-yellow-500">
+          <p className=" glitchSale p-1 text-[12px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
             Sale
           </p>
         </div>

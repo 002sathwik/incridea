@@ -14,6 +14,8 @@ import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Profile from '@/components/Accounts/profilecard/page';
 import Adress from '@/components/Accounts/Adress.js/page';
+import { Spinnaker } from 'next/font/google';
+import Spinner from '@/components/Spinner/page';
 
 export default function Account() {
   const {
@@ -120,7 +122,8 @@ export default function Account() {
   useEffect(() => {
     if (user !== null) extractAllAddresses();
   }, [user]);
-
+ 
+ 
   return (
     <>
     <Navbar/>

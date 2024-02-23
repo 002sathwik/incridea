@@ -15,13 +15,13 @@ export default function ProductButton({ item }) {
     setComponentLevelLoader,
     componentLevelLoader,
     user,
-    showCartModal, setShowCartModal
+    showCartModal,
+    setShowCartModal,
   } = useContext(GlobalContext);
   const router = useRouter();
 
   const isAdminView = pathName.includes("admin-view");
 
- 
   async function handleDeleteProduct(item) {
     setComponentLevelLoader({ loading: true, id: item._id });
 
@@ -43,9 +43,9 @@ export default function ProductButton({ item }) {
 
   async function handleAddToCart(getItem) {
     setComponentLevelLoader({ loading: true, id: getItem._id });
-     console.log(getItem);
+    console.log(getItem);
     const res = await addToCart({ productID: getItem._id, userID: user._id });
-   
+
     if (res.success) {
       toast.success(res.message, {
         position: toast.POSITION.TOP_RIGHT,
@@ -57,7 +57,7 @@ export default function ProductButton({ item }) {
         position: toast.POSITION.TOP_RIGHT,
       });
       setComponentLevelLoader({ loading: false, id: "" });
-      setShowCartModal(true)
+      setShowCartModal(true);
     }
 
     console.log(res);
@@ -77,7 +77,7 @@ export default function ProductButton({ item }) {
         onClick={() => handleDeleteProduct(item)}
         className=" rounded-full  font-Salsa  font-bold mt-1.5  flex w-full justify-center bg-white px-5 py-3 text-xs  uppercase tracking-wide text-black"
       >
-     {componentLevelLoader &&
+        {componentLevelLoader &&
         componentLevelLoader.loading &&
         item._id === componentLevelLoader.id ? (
           <ComponentLevelLoader
@@ -99,11 +99,11 @@ export default function ProductButton({ item }) {
         {componentLevelLoader &&
         componentLevelLoader.loading &&
         componentLevelLoader.id === item._id ? (
-          <ComponentLevelLoader
-            text={"Adding to Wallet"}
-            color={"#ffffff"}
-            loading={componentLevelLoader && componentLevelLoader.loading}
-          />
+          <div class="loader">
+            <div data-glitch="Loading..." class="glitch">
+              Loading...
+            </div>
+          </div>
         ) : (
           " Add to Wallet"
         )}
